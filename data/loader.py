@@ -1,7 +1,7 @@
 import json
 from typing import Tuple, cast, List
 from agentlightning.types import Dataset
-from src.al_test.train.data.rooms import  Room, ROOMS, RoomStatus, AvailableRooms, RoomRequirement, RoomSelectionTask
+from data.rooms import  Room, ROOMS, RoomStatus, AvailableRooms, RoomRequirement, RoomSelectionTask
 
 def load_room_tasks() -> Dataset[RoomSelectionTask]:
     tasks: List[RoomSelectionTask] = []
