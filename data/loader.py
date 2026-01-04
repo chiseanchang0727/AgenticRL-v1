@@ -5,7 +5,7 @@ from data.rooms import  Room, ROOMS, RoomStatus, AvailableRooms, RoomRequirement
 
 def load_room_tasks() -> Dataset[RoomSelectionTask]:
     tasks: List[RoomSelectionTask] = []
-    for line in open("src/al_test/train/data/room_tasks.jsonl"):
+    for line in open("data/room_tasks.jsonl"):
         task = json.loads(line)
         tasks.append(RoomSelectionTask(**task))
     return cast(Dataset[RoomSelectionTask], tasks)

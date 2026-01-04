@@ -1,4 +1,4 @@
 # AgenticRL-v1
 
-## Installation
-- `uv sync`
+## Note for installation from scratch
+- `uv add verl` goes first then others
