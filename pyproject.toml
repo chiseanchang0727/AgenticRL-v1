@@ -6,14 +6,17 @@ readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
     "agentlightning>=0.3.0",
+    "flash-attn==2.7.4.post1",
     "ipykernel>=7.1.0",
     "langchain>=1.2.0",
     "langchain-openai>=1.1.6",
+    "ninja>=1.13.0",
     "pydantic>=2.12.5",
     "pytest>=9.0.2",
     "python-dotenv>=1.2.1",
+    "torch<=2.6.0",
     "verl>=0.6.1",
-    "vllm>=0.13.0",
+    "vllm>=0.7.2",
 ]
 
 [tool.pytest.ini_options]
@@ -29,3 +32,6 @@ torch = [
 name = "pytorch-cu126"
 url = "https://download.pytorch.org/whl/cu121"
 explicit = true
+
+[tool.uv.extra-build-dependencies]
+flash-attn = ["torch"]
