@@ -24,11 +24,12 @@ RL_TRAINING_CONFIG: Dict[str, Any] = {
             "log_prob_micro_batch_size_per_gpu": 4,
             "multi_turn": {"format": "hermes"},
             "name": "vllm",
-            "gpu_memory_utilization": 0.8,
+            "gpu_memory_utilization": 0.3,
             "engine_kwargs": {
                 "vllm": {
                     "enable_auto_tool_choice": True,
                     "tool_call_parser": "hermes",
+                    "max-num-seqs": 1, # vLLM will only allow ONE active sequence (request) on the GPU at the same time
                 }
             },
         },
@@ -81,8 +82,12 @@ trainer = agl.Trainer(
 
 dataset_train, dataset_val = load_train_val_dataset()
 
+import torch
+import gc
 
 def main():
+    gc.collect()
+    torch.cuda.empty_cache()
     trainer.fit(agent=agent, train_dataset=dataset_train, val_dataset=dataset_val)
 
 if __name__ == '__main__':
